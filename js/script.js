@@ -1,15 +1,16 @@
 const { createApp } = Vue
 
 createApp({
-  data() {
-    return {
-        activeImage : 0, // slide attiva
-        // active : 
-        autoplayInterval: null,
+    data() {
+        return {
+            activeImage: 0, // slide attiva
+            // active : 
+            autoplayInterval: null,
+            mouseover: "",
 
-        slides : [
-            {
-                image: 'img/01.webp',
+            slides: [
+                {
+                    image: 'img/01.webp',
                     title: 'Marvel\'s Spiderman Miles Morale',
                     text: 'Experience the rise of Miles Morales as the new hero masters incredible, explosive new powers to become his own Spider-Man.',
                 }, {
@@ -30,78 +31,54 @@ createApp({
                     text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
                 }
             ]
-    }
-  },
-
-  
-  methods : {
-    avanti(){
-        this.activeImage++;
-        
-        if (this.activeImage > this.slides.length - 1){
-            this.activeImage = 0;    
-        }
-    },
-    indietro(){
-        this.activeImage--;
-
-        if (this.activeImage < 0) {
-
-            this.activeImage = this.slides.length - 1;
-            
         }
     },
 
-    showImg(index){
-        this.activeImage = index;
 
-        return ;
+    methods: {
+        avanti() {
+            this.activeImage++;
+
+            if (this.activeImage > this.slides.length - 1) {
+                this.activeImage = 0;
+            }
+        },
+        indietro() {
+            this.activeImage--;
+
+            if (this.activeImage < 0) {
+
+                this.activeImage = this.slides.length - 1;
+
+            }
+        },
+
+        showImg(index) {
+            this.activeImage = index;
+
+            return;
+        },
+
+        Autoplay() {
+            this.autoplayInterval = setInterval(() => {
+                // Passa  prossima immagine
+                this.activeImage = (this.activeImage + 1) % this.slides.length;
+            }, 3000); // Intervallo di 3 secondi 
+        },
     },
 
-    Autoplay() {
-        this.autoplayInterval = setInterval(() => {
-          // Passa  prossima immagine
-          this.activeImage = (this.activeImage + 1) % this.slides.length;
-        }, 3000); // Intervallo di 3 secondi 
-      },
-    },
     created() {
-      this.Autoplay(); // prendo la funzione funzione autoplay creando una funzione created
+        this.Autoplay(); // prendo la funzione funzione autoplay creando una funzione created
     },
-    beforeDestroy() {
-      clearInterval(this.autoplayInterval); 
-      // Ferma l'autoplay 
+    mouseover() {
+        clearInterval(this.autoplayInterval);
     },
+    mouseleave() {
+        
+
+    }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-  
 }).mount('#app')
 
 
@@ -112,7 +89,5 @@ createApp({
 Partendo dal markup della versione svolta in js plain, rifare lo slider ma questa volta usando Vue.
 
 Bonus:
- 1- al click su una thumb, visualizzare in grande l'immagine corrispondente
-2- applicare l'autoplay allo slider: ogni 3 secondi, cambia immagine automaticamente 
 3- quando il mouse va in hover sullo slider, bloccare l'autoplay e farlo riprendere quando esce
 */
