@@ -1,90 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Slider</title>
-    <link rel="stylesheet" href="./css/style.css" />
-</head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Slider</title>
+        <link rel="stylesheet" href="./css/style.css" />
+    </head>
 
-<body>
-   
-  
-    <div id="app">
+    <body>
 
-        <div class="container">
-            <div class="slider-wrapper" tabindex="0">
+        <div id="app">
 
-                <div class="item">
-                    <img :src="slides[activeImage].image" alt="">
-                    <div class="text">
-                        <!-- <h3>{{slides[activeImage].title}}</h3> -->
-                        <!-- <p> -->
+            <div class="container">
+                <div class="slider-wrapper" tabindex="0">
+
+                    <div class="item">
+                        <img :src="slides[activeImage].image" alt>
+                        <div class="text">
+                            <!-- <h3>{{slides[activeImage].title}}</h3> -->
+                            <!-- <p> -->
                             <!-- {{slides[activeImage].text}} -->
-                        <!-- </p> -->
+                            <!-- </p> -->
+                        </div>
                     </div>
-                </div>
 
-                <div class="thumbs" >
-                    <div class="prev" @click="avanti()">
-						<i class="fa-solid fa-chevron-up"></i>
+                    <div class="thumbs ">
+                        <div class="prev" @click="avanti()">
+                            <i class="fa-solid fa-chevron-up"></i>
+                        </div>
+                        <div class="next" @click="indietro()">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        
+                        <div v-for="(image, index) in slides" :key="index" class="thumb" :class="{ active: activeImage === index }" @click="showImg(index)">
+                            <img :src="slides[index].image" alt class="thumb">
+                          </div>
+                
+                       
+                       
+                       
+                       
+                       
                     </div>
-                    <div class="next" @click="indietro()">
-						<i class="fa-solid fa-chevron-down"></i>
-                    </div>
-                    <div v-for="(image,index) in slides" class="thumb">
-                        <img v-bind:src="slides[index].image" alt="" class="thumb" @click="showImg(index)">
-                    </div>
-                </div>
 
+                </div>
             </div>
+
         </div>
 
-    </div>
-
-
-  
-  
-  
-  
-  
-
-
-
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-
-  
-  
-
-  
-
-    <script src='https://unpkg.com/vue@3/dist/vue.global.js'></script>
-    <script src="./js/script.js"></script>
-</body>
+        <script src='https://unpkg.com/vue@3/dist/vue.global.js'></script>
+        <script src="./js/script.js"></script>
+    </body>
 
 </html>

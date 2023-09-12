@@ -3,7 +3,8 @@ const { createApp } = Vue
 createApp({
   data() {
     return {
-        activeImage : 0 ,
+        activeImage : 0, // slide attiva
+        // active : 
 
         slides : [
             {
@@ -50,17 +51,15 @@ createApp({
         }
     },
 
-    showImg(){
-        !slides[index].img === thumb.img 
-        return true
-        
+    showImg(index){
+        this.activeImage = index;
 
-
+        return ;
     }
-}
-
-
-  
+},
+attivaElemento() {
+    this.isActive = true;
+  }
   
 }).mount('#app')
 
