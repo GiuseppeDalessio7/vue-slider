@@ -6,7 +6,9 @@ createApp({
             activeImage: 0, // slide attiva
             // active : 
             autoplayInterval: null,
+            autoplayEnabled: true,
             mouseover: "",
+            mouseleave: "",
 
             slides: [
                 {
@@ -34,9 +36,12 @@ createApp({
         }
     },
 
-
+    created() {
+        this.Autoplay(); // prendo la funzione funzione autoplay creando una funzione created
+    },
     methods: {
         avanti() {
+            
             this.activeImage++;
 
             if (this.activeImage > this.slides.length - 1) {
@@ -55,27 +60,36 @@ createApp({
 
         showImg(index) {
             this.activeImage = index;
-
-            return;
         },
 
+       
+       
+       
         Autoplay() {
-            this.autoplayInterval = setInterval(() => {
-                // Passa  prossima immagine
+            if (this.autoplayEnabled) {
+              this.autoplayInterval = setInterval(() => {
+                // Passa alla prossima immagine
                 this.activeImage = (this.activeImage + 1) % this.slides.length;
-            }, 3000); // Intervallo di 3 secondi 
-        },
+              }, 3000); // Intervallo di 3 secondi 
+            } else {
+              clearInterval(this.autoplayInterval); // Fermare l'autoplay se disabilitato
+            }
+          },
+       
+          autoplayon() {
+            this.autoplayEnabled = true;
+            this.Autoplay(); // Chiamare Autoplay() quando si abilita
+          },
+          autoplayoff() {
+            this.autoplayEnabled = false;
+            this.Autoplay(); // Chiamare Autoplay() quando si disabilita
+          },
+         
+       
     },
-
-    created() {
-        this.Autoplay(); // prendo la funzione funzione autoplay creando una funzione created
-    },
-    mouseover() {
-        clearInterval(this.autoplayInterval);
-    },
-    mouseleave() {
-        this.created()
-    }
+   
+   
+   
 
 
 }).mount('#app')
