@@ -5,6 +5,7 @@ createApp({
     return {
         activeImage : 0, // slide attiva
         // active : 
+        autoplayInterval: null,
 
         slides : [
             {
@@ -55,11 +56,51 @@ createApp({
         this.activeImage = index;
 
         return ;
-    }
-},
-attivaElemento() {
-    this.isActive = true;
-  }
+    },
+
+    Autoplay() {
+        this.autoplayInterval = setInterval(() => {
+          // Passa  prossima immagine
+          this.activeImage = (this.activeImage + 1) % this.slides.length;
+        }, 3000); // Intervallo di 3 secondi 
+      },
+    },
+    created() {
+      this.Autoplay(); // prendo la funzione funzione autoplay creando una funzione created
+    },
+    beforeDestroy() {
+      clearInterval(this.autoplayInterval); 
+      // Ferma l'autoplay 
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
   
 }).mount('#app')
 
