@@ -74,8 +74,7 @@ createApp({
         clearInterval(this.autoplayInterval);
     },
     mouseleave() {
-        
-
+        this.created()
     }
 
 
