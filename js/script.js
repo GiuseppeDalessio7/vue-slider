@@ -36,7 +36,7 @@ createApp({
         }
     },
 
-    created() {
+    mounted() {
         this.Autoplay(); // prendo la funzione funzione autoplay creando una funzione created
     },
     methods: {
@@ -70,7 +70,7 @@ createApp({
               this.autoplayInterval = setInterval(() => {
                 // Passa alla prossima immagine
                 this.activeImage = (this.activeImage + 1) % this.slides.length;
-              }, 3000); // Intervallo di 3 secondi 
+              }, 2000); // Intervallo di 3 secondi 
             } else {
               clearInterval(this.autoplayInterval); // Fermare l'autoplay se disabilitato
             }
